@@ -1,0 +1,89 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Spotify_cl</title>
+    <link rel="stylesheet" href="style.css">
+    <link rel="icon" href="favicon.ico" type="image/x-icon">
+</head>
+<body>
+    <nav>
+        <ul>
+            <li class="brand"><img src="logo.png" alt="Spotify"> Spotify_cl</li>
+            <li>Home</li>
+            <li>Category</li>
+        </ul>
+    </nav>
+
+    <div class="container">
+        <div class="songList">
+            <h1>Songs that make you move</h1>
+            <div class="songItemContainer">
+                <div class="songItem">
+                    <img alt="1">
+                    <span class="songName">Under the influence</span>
+                    <span class="songlistplay"><span class="timestamp">3:04 <i id="0" class="fa-1x songItemPlay fa-solid fa-play"></i></span></span>
+                </div>
+                <div class="songItem">
+                    <img alt="2">
+                    <span class="songName">Greddy</span>
+                    <span class="songlistplay"><span class="timestamp">2:54 <i id="1" class="fa-1x songItemPlay fa-solid fa-play"></i></span></span>
+                </div>
+                <div class="songItem">
+                    <img alt="3">
+                    <span class="songName">The Machine</span>
+                    <span class="songlistplay"><span class="timestamp">3:20 <i id="2" class="fa-1x songItemPlay fa-solid fa-play"></i></span> </span>
+                </div>
+                <div class="songItem">
+                    <img alt="4">
+                    <span class="songName">Electric Love</span>
+                    <span class="songlistplay"><span class="timestamp">2:54 <i id="3" class="fa-1x songItemPlay fa-solid fa-play"></i></span> </span>
+                </div>
+                <div class="songItem">
+                    <img alt="5">
+                    <span class="songName">MILLION DOLLAR BABY</span>
+                    <span class="songlistplay"><span class="timestamp">3:40 <i id="4" class="fa-1x songItemPlay fa-solid fa-play"></i></span> </span>
+                </div>
+                <div class="songItem">
+                    <img alt="6">
+                    <span class="songName">We Will Rock You</span>
+                    <span class="songlistplay"><span class="timestamp">2:15 <i id="5" class="fa-1x songItemPlay fa-solid fa-play"></i></span> </span>
+                </div>
+                <div class="songItem">
+                    <img alt="7">
+                    <span class="songName">Not Like Us</span>
+                    <span class="songlistplay"><span class="timestamp">3:00 <i id="6" class="fa-1x songItemPlay fa-solid fa-play"></i></span></span>
+                </div>
+            </div>
+        </div>
+        <div class="songBanner">
+            <img id="currentSongCover" src="covers/1.jpg" alt="Cover Image">
+        </div>
+    </div>
+
+    <div class="bottom">
+        <div class="progressVolumeContainer">
+            <input type="range" name="range" id="myProgressBar" min="0" max="100">
+            <div class="volumeControl">
+                <i class="fa-solid fa-volume-up"></i>
+                <input type="range" id="volumeControl" min="0" max="100" value="100">
+            </div>
+        </div>
+        <div class="controls">
+            <div class="songInfo">
+                <img src="playing.gif" width="42px" alt="" id="gif">
+                <span id="masterSongName">Song Name</span>
+                <span id="currentTime">0:00</span> / <span id="duration">0:00</span>
+            </div>
+            <div class="icons">
+                <i class="fa-3x fa-solid fa-step-backward" id="previous"></i>
+                <i class="fa-3x fa-solid fa-play" id="masterPlay"></i>
+                <i class="fa-3x fa-solid fa-step-forward" id="next"></i>
+            </div>
+        </div>
+    </div>
+    <script src="https://kit.fontawesome.com/11eddc1e68.js" crossorigin="anonymous"></script>
+    <script src="script.js"></script>
+</body>
+</html>
