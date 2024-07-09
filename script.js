@@ -131,3 +131,115 @@ const formatTime = (time) => {
     }
     return `${minutes}:${seconds}`;
 };
+
+
+
+
+
+window.addEventListener('load', () => {
+    let playlists = JSON.parse(localStorage.getItem('playlists')) || [];
+    let playlistContainer = document.getElementById('playlistContainer');
+
+    playlists.forEach((playlist, playlistIndex) => {
+        let li = document.createElement('li');
+        li.classList.add('playlistItem');
+        li.dataset.playlistIndex = playlistIndex;
+
+        let playlistNameSpan = document.createElement('span');
+        playlistNameSpan.textContent = playlist.name;
+
+        let deleteIcon = document.createElement('i');
+        deleteIcon.classList.add('fa', 'fa-trash');
+        deleteIcon.dataset.playlistIndex = playlistIndex;
+        deleteIcon.addEventListener('click', deletePlaylist);
+
+        li.appendChild(playlistNameSpan);
+        li.appendChild(deleteIcon);
+
+        let songList = document.createElement('ul');
+        songList.classList.add('playlistSongs');
+        playlist.songs.forEach((song, songIndex) => {
+            let songLi = document.createElement('li');
+            songLi.classList.add('songItem');
+            songLi.dataset.playlistIndex = playlistIndex;
+            songLi.dataset.songIndex = songIndex;
+
+            let img = document.createElement('img');
+            img.src = song.coverpath;
+            img.alt = songIndex + 1;
+
+            let songNameSpan = document.createElement('span');
+            songNameSpan.classList.add('songName');
+            songNameSpan.textContent = song.songName;
+
+            let songListPlay = document.createElement('span');
+            songListPlay.classList.add('songlistplay');
+
+            let timestampSpan = document.createElement('span');
+            timestampSpan.classList.add('timestamp');
+            timestampSpan.textContent = '3:00'; // Dummy timestamp, replace with actual duration if available
+
+            let playPauseIcon = document.createElement('i');
+            playPauseIcon.classList.add('fa', 'fa-play', 'songItemPlay');
+            playPauseIcon.dataset.playlistIndex = playlistIndex;
+            playPauseIcon.dataset.songIndex = songIndex;
+            playPauseIcon.addEventListener('click', playPauseSong);
+
+            timestampSpan.appendChild(playPauseIcon);
+            songListPlay.appendChild(timestampSpan);
+
+            songLi.appendChild(img);
+            songLi.appendChild(songNameSpan);
+            songLi.appendChild(songListPlay);
+            songList.appendChild(songLi);
+        });
+        li.appendChild(songList);
+        playlistContainer.appendChild(li);
+    });
+
+    function deletePlaylist(e) {
+        let playlistIndex = e.target.dataset.playlistIndex;
+        playlists.splice(playlistIndex, 1);
+        localStorage.setItem('playlists', JSON.stringify(playlists));
+        location.reload();
+    }
+
+    function playPauseSong(e) {
+        let playlistIndex = e.target.dataset.playlistIndex;
+        let songIndex = e.target.dataset.songIndex;
+        let song = playlists[playlistIndex].songs[songIndex];
+
+        if (audioElement.src !== song.filepath) {
+            audioElement.src = song.filepath;
+            masterSongName.innerText = song.songName;
+            currentSongCover.src = song.coverpath;
+            audioElement.currentTime = 0;
+            audioElement.play();
+            masterPlay.classList.remove('fa-play');
+            masterPlay.classList.add('fa-pause');
+            updatePlayPauseIcons(e.target);
+        } else if (audioElement.paused) {
+            audioElement.play();
+            masterPlay.classList.remove('fa-play');
+            masterPlay.classList.add('fa-pause');
+            updatePlayPauseIcons(e.target);
+        } else {
+            audioElement.pause();
+            masterPlay.classList.remove('fa-pause');
+            masterPlay.classList.add('fa-play');
+            updatePlayPauseIcons();
+        }
+    }
+
+    function updatePlayPauseIcons(activeElement) {
+        document.querySelectorAll('.songItemPlay').forEach(icon => {
+            icon.classList.remove('fa-pause');
+            icon.classList.add('fa-play');
+        });
+        if (activeElement) {
+            activeElement.classList.remove('fa-play');
+            activeElement.classList.add('fa-pause');
+        }
+    }
+});
+

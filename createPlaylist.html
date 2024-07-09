@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Create Playlist</title>
+    <link rel="stylesheet" href="style.css">
+    <link rel="icon" href="favicon.ico" type="image/x-icon">
+</head>
+<body>
+    <nav>
+        <ul>
+            <li class="brand"><img src="logo.png" alt="Spotify"> Spotify_cl</li>
+            <li id="homeLink"><a href="index.html">Home</a></li>
+            <li id="createPlaylistLink"><a href="createPlaylist.html">Create Playlist</a></li>
+        </ul>
+    </nav>
+
+    <div class="container">
+        <h1>Create a New Playlist</h1>
+        <form id="playlistForm">
+            <div>
+                <label for="playlistName">Playlist Name:</label>
+                <input type="text" id="playlistName" required>
+            </div>
+            <div>
+                <label for="availableSongs">Available Songs:</label>
+                <select id="availableSongs">
+                    <!-- Options will be added dynamically -->
+                </select>
+                <button type="button" id="addSong">Add Song</button>
+            </div>
+            <div>
+                <label for="selectedSongs">Selected Songs:</label>
+                <ul id="selectedSongs"></ul>
+            </div>
+            <button type="submit">Create Playlist</button>
+        </form>
+    </div>
+
+    <script src="createPlaylist.js"></script>
+</body>
+</html>
